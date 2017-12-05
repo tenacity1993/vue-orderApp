@@ -38,11 +38,14 @@
             </ul>
 
         </div>
+        <shopcart :delivery-price="seller.deliveryPrice"
+        :min-price="seller.minPrice"></shopcart>
     </div>
 </template>
 
 <script>
     import BScroll from 'better-scroll'
+    import shopcart from 'components/shopcart/shopcart'
     const ERR_OK = 0
     export default {
         data () {
@@ -110,8 +113,13 @@
                 if (!event._constructed) { // 自定义派发click为true  避免pc端发生两次点击事件
                     return 0
                 }
-                console.log(index, event)
+                let foodList = this.$refs.foodList
+                let el = foodList[index]
+                this.foodScroll.scrollToElement(el, 300)
             }
+        },
+        components: {
+            shopcart
         }
     }
 </script>
